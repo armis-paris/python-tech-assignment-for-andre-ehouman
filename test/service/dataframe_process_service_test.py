@@ -21,6 +21,11 @@ class DataframeProcessServiceTest(unittest.TestCase):
 
         # then
         self.assertFalse(records.empty)
+        names = ["andre", "myriam", "aziz", "toprak", "sandra", "celestine", "benoit", "emile",
+                 "arnaud", "massara"]
+        records = pd.DataFrame({'text': names})
+        records = dataframe_process_service.add_new_columns_to_dataframe(records)
+        assert list(records['length_of_text']) == [5, 6, 4, 6, 6, 9, 6, 5, 6, 7]
 
     @staticmethod
     def __generate_long_text_list() -> list:

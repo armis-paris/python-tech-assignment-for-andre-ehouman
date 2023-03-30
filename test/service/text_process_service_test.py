@@ -16,3 +16,21 @@ class TextProcessServiceTest(unittest.TestCase):
 
         # then
         self.assertIsNotNone(text_information)
+        assert text_information["unique_numerical_characters"] == ["2", "0", "0", "9"]
+
+        # unique_numerical_characters_text
+        unique_numerical_characters_text = '200'
+        text_information = text_process_service.extract_information(unique_numerical_characters_text)
+        assert text_information["unique_alphabetic_characters"] == []
+
+        # unique_alphabetic_characters
+        unique_alphabetic_characters = 'car'
+        text_information = text_process_service.extract_information(unique_alphabetic_characters)
+        assert text_information["unique_numerical_characters"] == []
+
+        # unique_other_characters
+        unique_other_characters = '!?%'
+        text_information = text_process_service.extract_information(unique_other_characters)
+        assert text_information["unique_alphabetic_characters"] == []
+        assert text_information["unique_numerical_characters"] == []
+        assert text_information["unique_other_characters"] == ["!", "?", "%"]

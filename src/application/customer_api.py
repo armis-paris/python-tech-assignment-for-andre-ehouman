@@ -13,5 +13,6 @@ class CustomerAPI(FastAPI):
 
         @self.get('/customer-service/api/v1/register-customer')
         def register_customer(name: str, surname: str, age: int, mail_address: str):
-            number_of_customers = self.__customer_service.register_customer(surname, name, age, mail_address)
+            number_of_customers = self.__customer_service.register_customer(surname=surname, name=name, age=age,
+                                                                            mail_address=mail_address)
             return {'number_of_customers': number_of_customers}
